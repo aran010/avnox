@@ -4,6 +4,14 @@
 
 :root {
   color-scheme: light;
+  --ink: #0f172a;
+  --ink-2: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --paper: #f8fafc;
+  --beige: #f1f5f9;
+  --sand: #e2e8f0;
+  --accent: #2563eb;
 }
 
 html {
@@ -11,56 +19,63 @@ html {
 }
 
 body {
-  @apply bg-white text-[#050505] antialiased;
-  font-family: var(--font-inter), Inter, sans-serif;
+  color: var(--ink);
+  background-color: var(--paper);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", var(--font-inter), Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
 }
 
 ::selection {
-  background: rgba(5, 5, 5, 0.12);
+  background: rgba(37, 99, 235, 0.16);
 }
 
 :focus-visible {
-  outline: 2px solid #050505;
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 @layer components {
   .container-page {
-    @apply mx-auto w-full max-w-[1120px] px-5 sm:px-8;
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
   }
 
+  /* Small uppercase label */
   .eyebrow {
-    @apply text-[13px] font-medium tracking-[-0.26px] text-[#050505];
+    @apply text-[12px] font-semibold uppercase tracking-[0.08em] text-[#2563eb];
+  }
+
+  /* nuplay-style heading with a dual vertical blue accent bar */
+  .heading-bar {
+    @apply relative inline-flex items-center gap-3 text-[clamp(30px,4vw,44px)] font-medium leading-[1.1] tracking-[-0.03em] text-[#0f172a];
+  }
+  .heading-bar::before {
+    content: "";
+    @apply block h-[0.85em] w-[3px] shrink-0 rounded-full bg-[#2563eb];
+    box-shadow: 5px 0 0 -0.5px #60a5fa;
+    margin-right: 4px;
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-[#050505] px-5 py-[11px] text-[14px] font-semibold text-white transition hover:opacity-80;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-[14px] font-medium text-white shadow-[0_6px_18px_-6px_rgba(37,99,235,0.45)] transition-colors duration-200 hover:bg-[#1d4ed8];
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-[#050505]/20 px-5 py-[11px] text-[14px] font-semibold text-[#050505] transition hover:bg-black/5;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[#cbd5e1] bg-white px-5 py-3 text-[14px] font-medium text-[#0f172a] transition-colors duration-200 hover:border-[#2563eb] hover:text-[#2563eb];
   }
 
-  .btn-primary-on-dark {
-    @apply inline-flex items-center justify-center rounded-full bg-white px-5 py-[11px] text-[14px] font-semibold text-[#050505] transition hover:opacity-90;
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-[14px] font-medium text-white transition-colors duration-200 hover:bg-[#1d4ed8];
   }
 
-  .btn-secondary-on-dark {
-    @apply inline-flex items-center justify-center rounded-full border border-white/25 px-5 py-[11px] text-[14px] font-semibold text-white transition hover:bg-white/10;
+  .card {
+    @apply rounded-xl border border-[#e2e8f0] bg-white;
   }
-}
 
-.spacecraft-float {
-  animation: spacecraft-float 6.5s ease-in-out infinite;
-}
-
-@keyframes spacecraft-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
+  .dot-grid {
+    background-image: radial-gradient(circle, #cbd5e1 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 }
 
@@ -68,10 +83,7 @@ body {
   html {
     scroll-behavior: auto;
   }
-
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

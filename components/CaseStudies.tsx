@@ -1,3 +1,7 @@
+"use client";
+
+import { InteractiveGridPattern } from "./InteractiveGridPattern";
+
 const studies = [
   {
     kicker: "ILLUSTRATIVE CASE STUDY / SALES INTELLIGENCE",
@@ -15,8 +19,17 @@ const studies = [
 
 export function CaseStudies() {
   return (
-    <section id="case-studies" className="py-24">
-      <div className="container-page">
+    <section id="case-studies" className="relative overflow-hidden py-24">
+      {/* Interactive grid background */}
+      <InteractiveGridPattern
+        width={48}
+        height={48}
+        squares={[28, 20]}
+        className="[mask-image:radial-gradient(ellipse_at_50%_50%,white_40%,transparent_90%)]"
+        squaresClassName="stroke-gray-300/50 hover:fill-gray-200/40"
+      />
+
+      <div className="container-page relative z-10">
         <p className="eyebrow">02 / SELECTED POSSIBILITIES</p>
         <h2 className="mt-4 text-[clamp(32px,6vw,48px)] font-medium leading-[1.1] tracking-[-1.8px] text-[#050505]">
           Less friction. More forward.

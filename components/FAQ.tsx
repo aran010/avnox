@@ -1,27 +1,32 @@
 "use client";
 
 import { useState } from "react";
+import { Plus } from "lucide-react";
 
 const faqs = [
   {
-    q: "Where should we start with AI?",
-    a: "Start with an opportunity audit. We assess your workflows and identify where AI can create measurable value.",
+    q: "What services does Avnox offer?",
+    a: "Six service lines: IT consulting & management, AI & technology solutions, cloud & technology migration, staffing & workforce, software & licensing, and hardware & equipment supply.",
   },
   {
-    q: "Do we need to know exactly what we want?",
-    a: "No. We start with your business goals, not a predetermined tool. The audit helps define what is worth building—and what is not.",
+    q: "Can you manage a complete cloud or server migration?",
+    a: "Yes. We handle assessment, planning, execution and validation for data, application, server and infrastructure migrations, with phased cut-overs to protect continuity.",
   },
   {
-    q: "Can you work with our existing systems?",
-    a: "Yes. We design around the tools you already use so your team doesn’t have to start from scratch.",
+    q: "What kind of staff can you provide?",
+    a: "Skilled, semi-skilled, technical, IT and administrative personnel — on contract, outsourced or through permanent recruitment and placement.",
   },
   {
-    q: "How long does a project take?",
-    a: "Most projects move from audit to a first working version in a matter of weeks, depending on scope.",
+    q: "Do you sell, lease or rent hardware?",
+    a: "All three. Desktops, laptops, servers, networking, storage and office automation equipment are available to buy, lease, rent or on hire-purchase.",
   },
   {
-    q: "What happens after launch?",
-    a: "We stay involved—supporting, monitoring and improving the system as your business grows.",
+    q: "Can you work with our existing systems and vendors?",
+    a: "Yes. We integrate with your current environment and can manage existing vendors on your behalf.",
+  },
+  {
+    q: "How do engagements usually start?",
+    a: "With a consultation. We understand your requirements, then propose a scoped plan with timelines and commercials.",
   },
 ];
 
@@ -29,26 +34,34 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-24">
-      <div className="container-page max-w-3xl">
-        <h2 className="text-[clamp(32px,6vw,48px)] font-medium tracking-[-1.8px] text-[#050505]">Good questions. Clear answers.</h2>
-        <div className="mt-10 divide-y divide-black/10 border-y border-black/10">
+    <section className="py-28">
+      <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+        <div>
+          <h2 className="heading-bar">Frequently asked</h2>
+          <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-[#64748b]">
+            Can&apos;t find what you need? Write to us and we&apos;ll respond within one business day.
+          </p>
+        </div>
+        <div className="border-t border-[#e2e8f0]">
           {faqs.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div key={item.q}>
+              <div key={item.q} className="border-b border-[#e2e8f0]">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
                   aria-expanded={isOpen}
                   onClick={() => setOpen(isOpen ? null : i)}
                 >
-                  <span className="text-[20px] font-medium text-[#050505]">{item.q}</span>
-                  <span className="text-black/40">{isOpen ? "–" : "+"}</span>
+                  <span className="text-[18px] font-medium tracking-[-0.015em] text-[#0f172a]">{item.q}</span>
+                  <Plus
+                    size={18}
+                    className={`shrink-0 text-[#2563eb] transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                  />
                 </button>
                 <div className={`grid transition-[grid-template-rows] duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                   <div className="overflow-hidden">
-                    <p className="pb-5 text-[16px] leading-[1.5] tracking-[-0.32px] text-[#999999]">{item.a}</p>
+                    <p className="max-w-2xl pb-6 text-[15px] leading-[1.6] text-[#64748b]">{item.a}</p>
                   </div>
                 </div>
               </div>

@@ -2,28 +2,28 @@ import type { Metadata } from "next";
 
 export const site = {
   name: "Avnox",
-  tagline: "Intelligence, applied.",
-  description: "Avnox — AI strategy & custom solutions",
-  email: "[hello@avnox.com]",
+  tagline: "AI solutions. IT excellence. One partner.",
+  description: "Avnox — AI solutions & enterprise IT services",
+  email: "hello@avnoxsolutions.com",
   linkedin: "[LinkedIn URL]",
   x: "[X URL]",
   instagram: "[Instagram URL]",
   calendly: "/contact",
-  url: "https://avnox.example",
+  url: "https://avnoxsolutions.com",
 };
 
 export const navLinks = [
   { href: "/#services", label: "Services" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/blog", label: "Blog soon" },
+  { href: "/#solutions", label: "Solutions" },
+  { href: "/#industries", label: "Industries" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
 export const metadataBase: Metadata = {
   title: {
-    default: "Avnox — AI strategy & custom solutions",
+    default: "Avnox — AI Solutions & Enterprise IT Services",
     template: `%s — Avnox`,
   },
   description:
-    "AI strategy and custom solutions for businesses that want more revenue, faster growth and time back.",
+    "From AI strategy and custom solutions to cloud migration, staffing, and enterprise IT — Avnox is the technology partner that scales with you.",
 };

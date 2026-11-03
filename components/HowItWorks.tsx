@@ -1,24 +1,75 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { fadeUp, stagger, viewportOnce, easeOut } from "@/lib/motion";
+import { IlluBuild, IlluConsult, IlluDeploy, IlluImprove } from "./Iso";
+
 const steps = [
-  { n: "01", title: "Discover", body: "We learn your business, your ambitions and what’s slowing you down." },
-  { n: "02", title: "Audit", body: "We map the opportunities and prioritize a clear, practical AI roadmap." },
-  { n: "03", title: "Build", body: "We design, develop and test solutions around your real workflows." },
-  { n: "04", title: "Scale", body: "We deploy, support and improve your systems as your business grows." },
+  {
+    n: "01",
+    title: "Consult & Assess",
+    body: "We study your operations, systems and teams to find where technology and talent will have the clearest impact.",
+    Illu: IlluConsult,
+  },
+  {
+    n: "02",
+    title: "Design the Solution",
+    body: "A clear plan covering software, infrastructure, migration path and the people needed to run it.",
+    Illu: IlluBuild,
+  },
+  {
+    n: "03",
+    title: "Deploy & Integrate",
+    body: "We implement, migrate and staff — integrating with your existing environment, with continuity from day one.",
+    Illu: IlluDeploy,
+  },
+  {
+    n: "04",
+    title: "Support & Evolve",
+    body: "Ongoing management, monitoring and upgrades as your business, headcount and technology grow.",
+    Illu: IlluImprove,
+  },
 ];
 
 export function HowItWorks() {
+  const reduce = useReducedMotion();
+
   return (
     <section className="py-24">
       <div className="container-page">
-        <h2 className="text-[clamp(32px,6vw,48px)] font-medium tracking-[-1.8px] text-[#050505]">How we work</h2>
-        <ol className="mt-12 grid gap-8 md:grid-cols-4">
-          {steps.map((s) => (
-            <li key={s.n}>
-              <p className="text-[13px] font-medium tracking-[-0.26px] text-[#050505]">{s.n}</p>
-              <h3 className="mt-4 text-[28px] font-medium tracking-[-1.12px] text-[#050505]">{s.title}</h3>
-              <p className="mt-3 text-[16px] leading-[1.5] tracking-[-0.32px] text-[#999999]">{s.body}</p>
-            </li>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={reduce ? undefined : fadeUp}
+          transition={{ duration: 0.55, ease: easeOut }}
+          className="text-center"
+        >
+          <h2 className="heading-bar">How we work</h2>
+        </motion.div>
+        <motion.ol
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={reduce ? undefined : stagger}
+          className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {steps.map(({ n, title, body, Illu }, i) => (
+            <motion.li
+              key={n}
+              variants={reduce ? undefined : fadeUp}
+              transition={{ duration: 0.5, ease: easeOut }}
+              className={`border-[#e2e8f0] px-6 pb-8 pt-2 ${i % 2 === 1 ? "sm:border-l" : ""} ${i === 2 ? "lg:border-l" : ""}`}
+            >
+              <div className="mx-auto aspect-[24/17] w-full max-w-[240px]">
+                <Illu />
+              </div>
+              <p className="mt-8 text-[12px] text-[#64748b]">{n}</p>
+              <h3 className="mt-4 text-[22px] font-medium tracking-[-0.02em] text-[#0f172a]">{title}</h3>
+              <p className="mt-3 text-[15px] leading-[1.5] text-[#64748b]">{body}</p>
+            </motion.li>
           ))}
-        </ol>
+        </motion.ol>
       </div>
     </section>
   );
