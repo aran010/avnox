@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { site } from "@/lib/site";
@@ -19,15 +21,17 @@ const columns = [
     links: [
       ["Solutions", "/#solutions"],
       ["Industries", "/#industries"],
+      ["Standards", "/#standards"],
       ["Careers", "/careers"],
       ["Contact", "/contact"],
     ],
   },
   {
-    title: "Legal",
+    title: "Legal & Security",
     links: [
       ["Privacy policy", "/privacy"],
       ["Terms of service", "/terms"],
+      ["XML Sitemap", "/sitemap.xml"],
     ],
   },
 ];
@@ -64,6 +68,17 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              {col.title === "Legal & Security" && (
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new Event("avnox:open-cookie-settings"))}
+                    className="text-left transition-colors hover:text-[#2563eb]"
+                  >
+                    Cookie preferences
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         ))}
