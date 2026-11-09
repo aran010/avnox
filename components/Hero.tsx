@@ -229,7 +229,7 @@ export function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden pt-16">
       <div
-        className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[520px] opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent)]"
+        className="hero-graph-paper pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
         aria-hidden
       />
 
