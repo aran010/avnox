@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { fadeUp, stagger, viewportOnce, easeOut } from "@/lib/motion";
 import { IlluBuild, IlluConsult, IlluDeploy, IlluImprove } from "./Iso";
 
@@ -32,8 +32,6 @@ const steps = [
 ];
 
 export function HowItWorks() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="py-24">
       <div className="container-page">
@@ -41,7 +39,7 @@ export function HowItWorks() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : fadeUp}
+          variants={fadeUp}
           transition={{ duration: 0.55, ease: easeOut }}
           className="text-center"
         >
@@ -51,13 +49,13 @@ export function HowItWorks() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : stagger}
+          variants={stagger}
           className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4"
         >
           {steps.map(({ n, title, body, Illu }, i) => (
             <motion.li
               key={n}
-              variants={reduce ? undefined : fadeUp}
+              variants={fadeUp}
               transition={{ duration: 0.5, ease: easeOut }}
               className={`border-[#e2e8f0] px-6 pb-8 pt-2 ${i % 2 === 1 ? "sm:border-l" : ""} ${i === 2 ? "lg:border-l" : ""}`}
             >

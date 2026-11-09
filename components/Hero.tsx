@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Cloud, Cpu, HardDrive, Network, RefreshCw, Users, Database } from "lucide-react";
 import { site } from "@/lib/site";
 
@@ -46,7 +46,6 @@ function Slab({ highlight = false, index = 0 }: { highlight?: boolean; index?: n
 
 function Diagram() {
   const [active, setActive] = useState(0);
-  const reduce = useReducedMotion();
 
   useEffect(() => {
     const id = setInterval(() => setActive((a) => (a + 1) % services.length), 2400);
@@ -67,20 +66,18 @@ function Diagram() {
       {/* 1. Systems orbit */}
       <div className="relative mx-auto h-[190px] w-[190px]">
         <motion.div
-          animate={reduce ? undefined : { rotate: 360 }}
+          animate={{ rotate: 360 }}
           transition={{ duration: 32, repeat: Infinity, ease: "linear" }}
           className="absolute inset-[22px] rounded-full border border-dashed border-[#cbd5e1]"
         />
         {/* Orbiting data pulse */}
-        {!reduce && (
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="pointer-events-none absolute inset-[22px]"
-          >
-            <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-[#2563eb] shadow-[0_0_8px_#2563eb]" />
-          </motion.div>
-        )}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          className="pointer-events-none absolute inset-[22px]"
+        >
+          <span className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-[#2563eb] shadow-[0_0_8px_#2563eb]" />
+        </motion.div>
         <div className="absolute left-1/2 top-1/2 grid h-[78px] w-[78px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-[#e2e8f0] bg-white text-center shadow-sm">
           <span className="text-[10px] leading-tight text-[#64748b]">
             Systems
@@ -94,7 +91,7 @@ function Diagram() {
           return (
             <motion.div
               key={s.label}
-              animate={isPulse && !reduce ? { scale: [1, 1.16, 1], borderColor: "#2563eb" } : { scale: 1, borderColor: "#e2e8f0" }}
+              animate={isPulse ? { scale: [1, 1.16, 1], borderColor: "#2563eb" } : { scale: 1, borderColor: "#e2e8f0" }}
               transition={{ duration: 0.6 }}
               className="absolute grid h-8 w-8 place-items-center rounded-lg border bg-white shadow-sm"
               style={{ left: 95 + Math.cos(angle) * r - 16, top: 95 + Math.sin(angle) * r - 16 }}
@@ -150,19 +147,17 @@ function Diagram() {
           <path d="M40 85 V130 H120 V85 H200" />
           <path d="M120 40 V85" />
         </g>
-        {!reduce && (
-          <motion.path
-            key={active}
-            d={currentPath}
-            stroke="#2563eb"
-            strokeWidth="2"
-            strokeLinecap="round"
-            fill="none"
-            initial={{ pathLength: 0, opacity: 0.2 }}
-            animate={{ pathLength: 1, opacity: [0.2, 1, 0.4] }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-          />
-        )}
+        <motion.path
+          key={active}
+          d={currentPath}
+          stroke="#2563eb"
+          strokeWidth="2"
+          strokeLinecap="round"
+          fill="none"
+          initial={{ pathLength: 0, opacity: 0.2 }}
+          animate={{ pathLength: 1, opacity: [0.2, 1, 0.4] }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+        />
         {[
           [40, 40],
           [40, 130],
@@ -175,7 +170,7 @@ function Diagram() {
           const isHot = i === active % 7 || i === (active + 3) % 7;
           return (
             <g key={i}>
-              {isHot && !reduce && (
+              {isHot && (
                 <motion.circle
                   cx={x}
                   cy={y}
@@ -206,7 +201,7 @@ function Diagram() {
       <div className="pointer-events-none absolute bottom-4 left-[18%] right-[10%] flex items-center justify-center border-t border-dashed border-[#cbd5e1]">
         <span className="-mt-px flex items-center gap-1.5 bg-white/90 px-3 text-[11px] text-[#64748b]">
           <motion.span
-            animate={reduce ? undefined : { rotate: 360 }}
+            animate={{ rotate: 360 }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             className="inline-flex"
           >
@@ -230,7 +225,6 @@ const fadeUp = {
 
 export function Hero() {
   const [email, setEmail] = useState("");
-  const reduce = useReducedMotion();
 
   return (
     <section id="hero" className="relative overflow-hidden pt-16">
@@ -240,7 +234,7 @@ export function Hero() {
       />
 
       <div className="container-page relative pt-16 sm:pt-20">
-        <motion.div initial={reduce ? false : "hidden"} animate="visible" custom={0} variants={fadeUp}>
+        <motion.div initial="hidden" animate="visible" custom={0} variants={fadeUp}>
           <Link
             href="/#services"
             className="group inline-flex items-center gap-1.5 rounded-md border border-[#e2e8f0] bg-white px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.06em] text-[#334155] transition-colors hover:border-[#2563eb]"
@@ -253,7 +247,7 @@ export function Hero() {
 
         <div className="mt-6 grid items-end gap-10 lg:grid-cols-[1.7fr_1fr]">
           <motion.h1
-            initial={reduce ? false : "hidden"}
+            initial="hidden"
             animate="visible"
             custom={1}
             variants={fadeUp}
@@ -264,7 +258,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.div
-            initial={reduce ? false : "hidden"}
+            initial="hidden"
             animate="visible"
             custom={2}
             variants={fadeUp}
@@ -296,7 +290,7 @@ export function Hero() {
 
         {/* Visual panel */}
         <motion.div
-          initial={reduce ? false : { opacity: 0, y: 36, scale: 0.985 }}
+          initial={{ opacity: 0, y: 36, scale: 0.985 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.85, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="relative mt-14 overflow-hidden rounded-2xl border border-[#e2e8f0]"

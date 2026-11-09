@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 /**
  * Avnox logo — mark rebuilt as two vector pieces so each can move:
@@ -10,7 +10,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
  *
  * Motion:
  *  - Intro: stroke rises in, foot drops in with a springy bounce, letters ripple in.
- *  - Hover: foot slides out along its slant & turns brand orange, stroke leans,
+ *  - Hover: foot slides out along its slant & turns brand blue, stroke leans,
  *           letters do a small wave. Everything springs back on leave.
  */
 
@@ -57,7 +57,6 @@ const letter: Variants = {
 };
 
 export function LogoMark({ size = 30, className = "" }: { size?: number; className?: string }) {
-  const reduce = useReducedMotion();
   return (
     <motion.svg
       width={size * 1.27}
@@ -69,12 +68,12 @@ export function LogoMark({ size = 30, className = "" }: { size?: number; classNa
     >
       <motion.path
         d="M0 193 L105 0 H192 L87 193 Z"
-        variants={reduce ? undefined : stroke}
+        variants={stroke}
         style={{ originX: "50%", originY: "100%" }}
       />
       <motion.path
         d="M131 113 L148 80 H190 L245 193 H168 Z"
-        variants={reduce ? undefined : foot}
+        variants={foot}
         style={{ originX: "30%", originY: "100%" }}
       />
     </motion.svg>
@@ -82,8 +81,7 @@ export function LogoMark({ size = 30, className = "" }: { size?: number; classNa
 }
 
 export function Logo({ light = false, size = "default" }: { light?: boolean; size?: "default" | "large" }) {
-  const reduce = useReducedMotion();
-  const color = light ? "text-white" : "text-[#1d1d1f]";
+  const color = light ? "text-white" : "text-[#0f172a]";
   const markSize = size === "large" ? 44 : 22;
   const textSize = size === "large" ? "text-[44px]" : "text-[22px]";
 
@@ -91,10 +89,10 @@ export function Logo({ light = false, size = "default" }: { light?: boolean; siz
     <Link href="/" aria-label="Avnox home" className={`inline-flex ${color}`}>
       <motion.span
         className="inline-flex items-center gap-2.5"
-        initial={reduce ? false : "hidden"}
+        initial="hidden"
         animate="visible"
-        whileHover={reduce ? undefined : "hover"}
-        whileTap={reduce ? undefined : { scale: 0.96 }}
+        whileHover="hover"
+        whileTap={{ scale: 0.96 }}
       >
         <LogoMark size={markSize} />
         <motion.span
@@ -102,7 +100,7 @@ export function Logo({ light = false, size = "default" }: { light?: boolean; siz
           className={`${textSize} inline-flex overflow-hidden pb-[0.08em] font-semibold leading-none tracking-[-0.035em]`}
         >
           {"Avnox".split("").map((ch, i) => (
-            <motion.span key={i} variants={reduce ? undefined : letter} className="inline-block">
+            <motion.span key={i} variants={letter} className="inline-block">
               {ch}
             </motion.span>
           ))}

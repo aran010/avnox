@@ -29,7 +29,6 @@ const config: Config = {
           "SF Pro Display",
           "SF Pro Text",
           "Helvetica Neue",
-          "var(--font-inter)",
           "Helvetica",
           "Arial",
           "sans-serif",

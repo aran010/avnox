@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { fadeUp, stagger, viewportOnce, easeOut } from "@/lib/motion";
@@ -17,8 +17,6 @@ const industries = [
 ];
 
 export function Industries() {
-  const reduce = useReducedMotion();
-
   return (
     <section id="industries" className="scroll-mt-16 bg-[#f1f5f9] py-28">
       <div className="container-page">
@@ -26,7 +24,7 @@ export function Industries() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : fadeUp}
+          variants={fadeUp}
           transition={{ duration: 0.55, ease: easeOut }}
           className="flex flex-col justify-between gap-6 md:flex-row md:items-end"
         >
@@ -40,13 +38,13 @@ export function Industries() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : stagger}
+          variants={stagger}
           className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         >
           {industries.map((it, i) => (
             <motion.li
               key={it.title}
-              variants={reduce ? undefined : fadeUp}
+              variants={fadeUp}
               transition={{ duration: 0.45, ease: easeOut }}
             >
               <Link

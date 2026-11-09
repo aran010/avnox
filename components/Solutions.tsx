@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { fadeUp, viewportOnce, easeOut } from "@/lib/motion";
 
@@ -46,7 +46,6 @@ const tabs = [
 
 export function Solutions() {
   const [active, setActive] = useState(0);
-  const reduce = useReducedMotion();
   const t = tabs[active];
 
   return (
@@ -56,7 +55,7 @@ export function Solutions() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : fadeUp}
+          variants={fadeUp}
           transition={{ duration: 0.55, ease: easeOut }}
           className="flex flex-col justify-between gap-6 md:flex-row md:items-end"
         >
@@ -70,7 +69,7 @@ export function Solutions() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : fadeUp}
+          variants={fadeUp}
           transition={{ duration: 0.6, delay: 0.1, ease: easeOut }}
           className="mt-12 grid overflow-hidden rounded-xl border border-[#e2e8f0] bg-white lg:grid-cols-[320px_1fr]"
         >
@@ -109,9 +108,9 @@ export function Solutions() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
-                initial={reduce ? false : { opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -14 }}
+                exit={{ opacity: 0, y: -14 }}
                 transition={{ duration: 0.32, ease: easeOut }}
                 className="grid gap-10 p-8 md:grid-cols-[1.3fr_1fr] md:p-12"
               >
@@ -124,7 +123,7 @@ export function Solutions() {
                     {t.points.map((p, idx) => (
                       <motion.li
                         key={p}
-                        initial={reduce ? false : { opacity: 0, x: -8 }}
+                        initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: idx * 0.05, ease: easeOut }}
                         className="border-l-2 border-[#2563eb]/60 pl-3 text-[14px] text-[#334155]"
@@ -152,14 +151,14 @@ export function Solutions() {
                       stroke="#93c5fd"
                       strokeWidth="1"
                       strokeDasharray="4 6"
-                      animate={reduce ? undefined : { rotate: 360 }}
+                      animate={{ rotate: 360 }}
                       transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
                       style={{ originX: "120px", originY: "120px" }}
                     />
                     <circle cx="120" cy="120" r="58" fill="none" stroke="#bfdbfe" strokeWidth="1" />
                   </svg>
                   <motion.p
-                    initial={reduce ? false : { scale: 0.92, opacity: 0 }}
+                    initial={{ scale: 0.92, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 320, damping: 22 }}
                     className="relative text-[clamp(44px,5vw,60px)] font-normal leading-none tracking-[-0.04em] text-[#1d4ed8]"

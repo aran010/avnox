@@ -2,14 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
 import { fadeUp, viewportOnce, easeOut } from "@/lib/motion";
 
 export function CtaBanner() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="pb-24">
       <div className="container-page">
@@ -17,7 +15,7 @@ export function CtaBanner() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : fadeUp}
+          variants={fadeUp}
           transition={{ duration: 0.65, ease: easeOut }}
           className="relative grid overflow-hidden rounded-2xl bg-[#0f172a] lg:grid-cols-[1.2fr_1fr]"
         >
@@ -47,7 +45,7 @@ export function CtaBanner() {
           </div>
           <div className="relative min-h-[280px] overflow-hidden">
             <motion.div
-              animate={reduce ? undefined : { scale: [1, 1.05, 1] }}
+              animate={{ scale: [1, 1.05, 1] }}
               transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
               className="absolute inset-0"
             >

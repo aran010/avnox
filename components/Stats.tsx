@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { fadeUp, stagger, viewportOnce, easeOut } from "@/lib/motion";
 
 const items = [
@@ -14,7 +14,6 @@ const items = [
 function CountNumber({ target, suffix = "", prefix = "" }: { target: number; suffix?: string; prefix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const reduce = useReducedMotion();
   const motionVal = useMotionValue(0);
   const springVal = useSpring(motionVal, { stiffness: 75, damping: 20 });
 
@@ -34,13 +33,12 @@ function CountNumber({ target, suffix = "", prefix = "" }: { target: number; suf
 
   return (
     <span ref={ref}>
-      {reduce ? `${prefix}${target}${suffix}` : `${prefix}0${suffix}`}
+      {`${prefix}${target}${suffix}`}
     </span>
   );
 }
 
 function Wave() {
-  const reduce = useReducedMotion();
   return (
     <svg viewBox="0 0 1440 180" preserveAspectRatio="none" className="block h-[120px] w-full sm:h-[160px]" aria-hidden>
       <defs>
@@ -55,33 +53,25 @@ function Wave() {
         </linearGradient>
       </defs>
       <motion.path
-        animate={
-          reduce
-            ? undefined
-            : {
-                d: [
-                  "M0 60 C 240 140, 480 20, 760 90 S 1200 150, 1440 50 V180 H0 Z",
-                  "M0 80 C 260 30, 520 130, 760 70 S 1180 40, 1440 85 V180 H0 Z",
-                  "M0 60 C 240 140, 480 20, 760 90 S 1200 150, 1440 50 V180 H0 Z",
-                ],
-              }
-        }
+        animate={{
+          d: [
+            "M0 60 C 240 140, 480 20, 760 90 S 1200 150, 1440 50 V180 H0 Z",
+            "M0 80 C 260 30, 520 130, 760 70 S 1180 40, 1440 85 V180 H0 Z",
+            "M0 60 C 240 140, 480 20, 760 90 S 1200 150, 1440 50 V180 H0 Z",
+          ],
+        }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         d="M0 60 C 240 140, 480 20, 760 90 S 1200 150, 1440 50 V180 H0 Z"
         fill="url(#w1)"
       />
       <motion.path
-        animate={
-          reduce
-            ? undefined
-            : {
-                d: [
-                  "M0 110 C 300 40, 620 170, 900 110 S 1280 60, 1440 120 V180 H0 Z",
-                  "M0 95 C 320 150, 600 60, 900 125 S 1260 140, 1440 95 V180 H0 Z",
-                  "M0 110 C 300 40, 620 170, 900 110 S 1280 60, 1440 120 V180 H0 Z",
-                ],
-              }
-        }
+        animate={{
+          d: [
+            "M0 110 C 300 40, 620 170, 900 110 S 1280 60, 1440 120 V180 H0 Z",
+            "M0 95 C 320 150, 600 60, 900 125 S 1260 140, 1440 95 V180 H0 Z",
+            "M0 110 C 300 40, 620 170, 900 110 S 1280 60, 1440 120 V180 H0 Z",
+          ],
+        }}
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         d="M0 110 C 300 40, 620 170, 900 110 S 1280 60, 1440 120 V180 H0 Z"
         fill="url(#w2)"
@@ -92,8 +82,6 @@ function Wave() {
 }
 
 export function Stats() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative pt-28">
       <div className="container-page">
@@ -101,7 +89,7 @@ export function Stats() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : fadeUp}
+          variants={fadeUp}
           transition={{ duration: 0.55, ease: easeOut }}
           className="flex flex-col justify-between gap-6 md:flex-row md:items-end"
         >
@@ -117,13 +105,13 @@ export function Stats() {
             initial="hidden"
             whileInView="visible"
             viewport={viewportOnce}
-            variants={reduce ? undefined : stagger}
+            variants={stagger}
             className="grid gap-px bg-[#e2e8f0] sm:grid-cols-2 lg:grid-cols-4"
           >
             {items.map((it) => (
               <motion.li
                 key={it.l}
-                variants={reduce ? undefined : fadeUp}
+                variants={fadeUp}
                 transition={{ duration: 0.45, ease: easeOut }}
                 className="bg-white px-7 py-10"
               >

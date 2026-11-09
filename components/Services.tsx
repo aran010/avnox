@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, Brain, Cloud, Monitor, Settings, ShieldCheck, Users } from "lucide-react";
 import { fadeUp, stagger, viewportOnce, easeOut } from "@/lib/motion";
 
@@ -45,8 +45,6 @@ const services = [
 ];
 
 export function Services() {
-  const reduce = useReducedMotion();
-
   return (
     <section id="services" className="scroll-mt-16 bg-[#f1f5f9] py-28">
       <div className="container-page">
@@ -54,7 +52,7 @@ export function Services() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : fadeUp}
+          variants={fadeUp}
           transition={{ duration: 0.55, ease: easeOut }}
           className="flex flex-col justify-between gap-6 md:flex-row md:items-end"
         >
@@ -68,15 +66,15 @@ export function Services() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          variants={reduce ? undefined : stagger}
+          variants={stagger}
           className="mt-12 grid gap-px overflow-hidden rounded-xl border border-[#e2e8f0] bg-[#e2e8f0] md:grid-cols-2 lg:grid-cols-3"
         >
           {services.map((s) => (
             <motion.article
               key={s.title}
-              variants={reduce ? undefined : fadeUp}
+              variants={fadeUp}
               transition={{ duration: 0.5, ease: easeOut }}
-              whileHover={reduce ? undefined : "hover"}
+              whileHover="hover"
               className="group relative flex flex-col bg-[#f8fafc] p-8 transition-colors duration-300 hover:bg-white"
             >
               <motion.span
