@@ -7,11 +7,7 @@ import { motion, type Variants } from "framer-motion";
  * Avnox logo — mark rebuilt as two vector pieces so each can move:
  *  - Stroke: the tall slanted bar
  *  - Foot:   the smaller parallelogram that kicks out to the right
- *
- * Motion:
- *  - Intro: stroke rises in, foot drops in with a springy bounce, letters ripple in.
- *  - Hover: foot slides out along its slant & turns brand blue, stroke leans,
- *           letters do a small wave. Everything springs back on leave.
+ *  - Wordmark: "Avno" + custom geometric split-chevron "x" matching the brand mark
  */
 
 const spring = { type: "spring", stiffness: 420, damping: 18 } as const;
@@ -80,6 +76,24 @@ export function LogoMark({ size = 30, className = "" }: { size?: number; classNa
   );
 }
 
+function CustomX({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      fill="currentColor"
+      className={`inline-block h-[0.53em] w-[0.58em] translate-y-[0.01em] ${className}`}
+      aria-label="x"
+    >
+      {/* Left chevron (>) */}
+      <path d="M0 0 H28 L65 50 L28 100 H0 L37 50 Z" />
+      {/* Top-right detached wedge */}
+      <path d="M72 0 H100 L75 34 L61 15 Z" />
+      {/* Bottom-right detached wedge */}
+      <path d="M61 85 L75 66 L100 100 H72 Z" />
+    </svg>
+  );
+}
+
 export function Logo({ light = false, size = "default" }: { light?: boolean; size?: "default" | "large" }) {
   const color = light ? "text-white" : "text-[#0f172a]";
   const markSize = size === "large" ? 44 : 22;
@@ -97,13 +111,16 @@ export function Logo({ light = false, size = "default" }: { light?: boolean; siz
         <LogoMark size={markSize} />
         <motion.span
           variants={word}
-          className={`${textSize} inline-flex overflow-hidden pb-[0.08em] font-semibold leading-none tracking-[-0.035em]`}
+          className={`${textSize} inline-flex items-baseline overflow-hidden pb-[0.08em] font-semibold leading-none tracking-[-0.035em]`}
         >
-          {"Avnox".split("").map((ch, i) => (
+          {"Avno".split("").map((ch, i) => (
             <motion.span key={i} variants={letter} className="inline-block">
               {ch}
             </motion.span>
           ))}
+          <motion.span variants={letter} className="inline-flex items-baseline pl-[0.01em]">
+            <CustomX />
+          </motion.span>
         </motion.span>
       </motion.span>
     </Link>
