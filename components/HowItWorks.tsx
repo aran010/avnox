@@ -38,7 +38,7 @@ export function HowItWorks() {
       className="relative overflow-hidden py-28"
       style={{
         background:
-          "radial-gradient(ellipse 65% 55% at 18% 25%, rgba(59, 130, 246, 0.16) 0%, transparent 65%), radial-gradient(ellipse 60% 55% at 85% 75%, rgba(37, 99, 235, 0.18) 0%, transparent 65%), radial-gradient(ellipse 50% 45% at 50% 50%, rgba(147, 197, 253, 0.22) 0%, transparent 70%), linear-gradient(180deg, #f8fafc 0%, #eff6ff 45%, #dbeafe 78%, #f1f5f9 100%)",
+          "radial-gradient(ellipse 65% 55% at 18% 25%, rgba(59, 130, 246, 0.18) 0%, transparent 65%), radial-gradient(ellipse 55% 50% at 85% 75%, rgba(16, 185, 129, 0.12) 0%, transparent 65%), radial-gradient(ellipse 55% 45% at 50% 45%, rgba(37, 99, 235, 0.16) 0%, transparent 70%), linear-gradient(180deg, #f8fafc 0%, #eff6ff 55%, #ecfdf5 82%, #f1f5f9 100%)",
       }}
     >
       {/* Subtle top and bottom blend glows */}

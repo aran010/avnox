@@ -46,14 +46,14 @@ body {
     @apply text-[12px] font-semibold uppercase tracking-[0.08em] text-[#2563eb];
   }
 
-  /* nuplay-style heading with a dual vertical blue accent bar */
+  /* nuplay-style heading with an 80% blue + 20% green dual vertical accent bar */
   .heading-bar {
     @apply relative inline-flex items-center gap-3 text-[clamp(30px,4vw,44px)] font-medium leading-[1.1] tracking-[-0.03em] text-[#0f172a];
   }
   .heading-bar::before {
     content: "";
     @apply block h-[0.85em] w-[3px] shrink-0 rounded-full bg-[#2563eb];
-    box-shadow: 5px 0 0 -0.5px #60a5fa;
+    box-shadow: 5px 0 0 -0.5px #10b981;
     margin-right: 4px;
   }
 

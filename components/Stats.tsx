@@ -44,12 +44,13 @@ function Wave() {
       <defs>
         <linearGradient id="w1" x1="0" x2="1">
           <stop offset="0" stopColor="#dbeafe" />
-          <stop offset="0.5" stopColor="#bfdbfe" />
-          <stop offset="1" stopColor="#e0f2fe" />
+          <stop offset="0.78" stopColor="#bfdbfe" />
+          <stop offset="1" stopColor="#d1fae5" />
         </linearGradient>
         <linearGradient id="w2" x1="0" x2="1">
           <stop offset="0" stopColor="#93c5fd" stopOpacity="0.65" />
-          <stop offset="1" stopColor="#dbeafe" stopOpacity="0.4" />
+          <stop offset="0.8" stopColor="#bfdbfe" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#6ee7b7" stopOpacity="0.45" />
         </linearGradient>
       </defs>
       <motion.path

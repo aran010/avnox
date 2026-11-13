@@ -6,8 +6,8 @@ import { motion, type Variants } from "framer-motion";
 /**
  * Avnox logo — mark rebuilt as two vector pieces so each can move:
  *  - Stroke: the tall slanted bar
- *  - Foot:   the smaller parallelogram that kicks out to the right
- *  - Wordmark: "Avno" + custom geometric split-chevron "x" matching the brand mark
+ *  - Foot:   the smaller parallelogram that kicks out to the right (80% blue / 20% green gradient on hover)
+ *  - Wordmark: "Avno" + custom geometric split-chevron "x" with 20% green accent wedges
  */
 
 const spring = { type: "spring", stiffness: 420, damping: 18 } as const;
@@ -25,14 +25,14 @@ const foot: Variants = {
     x: 0,
     rotate: 0,
     opacity: 1,
-    fill: "currentColor",
+    fill: "url(#avnox-foot-grad)",
     transition: { type: "spring", stiffness: 300, damping: 11, delay: 0.3 },
   },
   hover: {
     x: 18,
     y: 10,
     rotate: 8,
-    fill: "#2563eb",
+    fill: "url(#avnox-foot-grad)",
     transition: { type: "spring", stiffness: 380, damping: 12 },
   },
 };
@@ -62,6 +62,13 @@ export function LogoMark({ size = 30, className = "" }: { size?: number; classNa
       className={`overflow-visible ${className}`}
       aria-hidden
     >
+      <defs>
+        <linearGradient id="avnox-foot-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#2563eb" />
+          <stop offset="75%" stopColor="#2563eb" />
+          <stop offset="100%" stopColor="#10b981" />
+        </linearGradient>
+      </defs>
       <motion.path
         d="M0 193 L105 0 H192 L87 193 Z"
         variants={stroke}
@@ -86,10 +93,10 @@ function CustomX({ className = "" }: { className?: string }) {
     >
       {/* Left chevron (>) */}
       <path d="M0 0 H28 L65 50 L28 100 H0 L37 50 Z" />
-      {/* Top-right detached wedge */}
-      <path d="M72 0 H100 L75 34 L61 15 Z" />
-      {/* Bottom-right detached wedge */}
-      <path d="M61 85 L75 66 L100 100 H72 Z" />
+      {/* Top-right detached wedge (emerald green 20% accent) */}
+      <path d="M72 0 H100 L75 34 L61 15 Z" fill="#10b981" />
+      {/* Bottom-right detached wedge (emerald green 20% accent) */}
+      <path d="M61 85 L75 66 L100 100 H72 Z" fill="#10b981" />
     </svg>
   );
 }

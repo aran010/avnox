@@ -239,7 +239,7 @@ export function Hero() {
             href="/#services"
             className="group inline-flex items-center gap-1.5 rounded-md border border-[#e2e8f0] bg-white px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.06em] text-[#334155] transition-colors hover:border-[#2563eb]"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#2563eb]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[#10b981]" />
             Explore our services
             <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
           </Link>
@@ -253,7 +253,10 @@ export function Hero() {
             variants={fadeUp}
             className="text-[clamp(40px,5vw,64px)] font-medium leading-[1.04] tracking-[-0.035em] text-[#0f172a]"
           >
-            Enterprise <span className="text-[#2563eb]">IT &amp; talent,</span>
+            Enterprise{" "}
+            <span className="bg-gradient-to-r from-[#2563eb] via-[#2563eb] to-[#10b981] bg-clip-text text-transparent">
+              IT &amp; talent,
+            </span>
             <br className="hidden sm:block" /> delivered by one partner
           </motion.h1>
 
