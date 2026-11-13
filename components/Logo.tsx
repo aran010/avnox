@@ -6,8 +6,8 @@ import { motion, type Variants } from "framer-motion";
 /**
  * Avnox logo — mark rebuilt as two vector pieces so each can move:
  *  - Stroke: the tall slanted bar
- *  - Foot:   the smaller parallelogram that kicks out to the right (80% blue / 20% green gradient on hover)
- *  - Wordmark: "Avno" + custom geometric split-chevron "x" with 20% green accent wedges
+ *  - Foot:   the smaller parallelogram that kicks out to the right (80% blue / 20% green gradient)
+ *  - Wordmark: Custom stylized sliced-wing "A" + "vno" + custom geometric split-chevron "x"
  */
 
 const spring = { type: "spring", stiffness: 420, damping: 18 } as const;
@@ -83,6 +83,22 @@ export function LogoMark({ size = 30, className = "" }: { size?: number; classNa
   );
 }
 
+function CustomA({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      fill="currentColor"
+      className={`inline-block h-[0.72em] w-[0.68em] translate-y-[0.01em] ${className}`}
+      aria-label="A"
+    >
+      {/* Upper-left arm + apex + full right leg */}
+      <path d="M40 0 H63 L100 100 H78.5 L51.5 23 L38 57 H17.2 Z" />
+      {/* Lower-left leg + sweeping diagonal crossbar wing */}
+      <path d="M10.8 73 L63 59.5 L64 62.5 L28.8 80 L21.5 100 H0 Z" />
+    </svg>
+  );
+}
+
 function CustomX({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -120,7 +136,10 @@ export function Logo({ light = false, size = "default" }: { light?: boolean; siz
           variants={word}
           className={`${textSize} inline-flex items-baseline overflow-hidden pb-[0.08em] font-semibold leading-none tracking-[-0.035em]`}
         >
-          {"Avno".split("").map((ch, i) => (
+          <motion.span variants={letter} className="inline-flex items-baseline pr-[0.01em]">
+            <CustomA />
+          </motion.span>
+          {"vno".split("").map((ch, i) => (
             <motion.span key={i} variants={letter} className="inline-block">
               {ch}
             </motion.span>
