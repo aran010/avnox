@@ -1,5 +1,6 @@
 "use client";
 
+import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./Logo";
 import { site } from "@/lib/site";
@@ -37,6 +38,29 @@ const columns = [
 ];
 
 export function Footer() {
+  const [subEmail, setSubEmail] = useState("");
+  const [subState, setSubState] = useState<"idle" | "sending" | "sent">("idle");
+
+  async function handleSubscribe(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!subEmail.trim()) return;
+    setSubState("sending");
+    try {
+      await fetch("/api/book-call", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "lead",
+          email: subEmail.trim(),
+        }),
+      });
+      setSubState("sent");
+      setSubEmail("");
+    } catch {
+      setSubState("idle");
+    }
+  }
+
   return (
     <footer className="border-t border-[#e2e8f0] bg-[#f1f5f9]">
       <div className="container-page grid gap-12 py-16 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
@@ -45,15 +69,22 @@ export function Footer() {
           <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-[#64748b]">
             IT consulting, migration, staffing, software and hardware — delivered by one accountable partner.
           </p>
-          <form className="mt-6 flex max-w-sm items-center rounded-lg border border-[#cbd5e1] bg-white p-1">
+          <form onSubmit={handleSubscribe} className="mt-6 flex max-w-sm items-center rounded-lg border border-[#cbd5e1] bg-white p-1">
             <input
               type="email"
-              placeholder="Subscribe for updates"
-              aria-label="Email for updates"
-              className="min-w-0 flex-1 bg-transparent px-3 text-[13px] placeholder:text-[#94a3b8] focus:outline-none"
+              required
+              value={subEmail}
+              onChange={(e) => setSubEmail(e.target.value)}
+              placeholder={subState === "sent" ? "Thanks! We'll be in touch." : "Enter your email to get in touch"}
+              aria-label="Email to get in touch"
+              className="min-w-0 flex-1 bg-transparent px-3 text-[13px] text-[#0f172a] placeholder:text-[#94a3b8] focus:outline-none"
             />
-            <button type="submit" className="rounded-md bg-[#2563eb] px-3.5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-[#1d4ed8]">
-              Subscribe
+            <button
+              type="submit"
+              disabled={subState === "sending" || subState === "sent"}
+              className="rounded-md bg-[#2563eb] px-3.5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-[#1d4ed8] disabled:opacity-70"
+            >
+              {subState === "sent" ? "Sent ✓" : subState === "sending" ? "Sending..." : "Get in touch"}
             </button>
           </form>
         </div>
