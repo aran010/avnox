@@ -215,11 +215,11 @@ function Diagram() {
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 1, y: 12 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
   }),
 };
 
@@ -293,9 +293,9 @@ export function Hero() {
 
         {/* Visual panel */}
         <motion.div
-          initial={{ opacity: 0, y: 36, scale: 0.985 }}
+          initial={{ opacity: 1, y: 16, scale: 0.99 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.85, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className="relative mt-14 overflow-hidden rounded-2xl border border-[#e2e8f0]"
         >
           <div className="relative h-[420px] sm:h-[520px] lg:h-[560px]">

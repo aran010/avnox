@@ -105,7 +105,7 @@ export function Solutions() {
           </ul>
 
           <div className="relative overflow-hidden">
-            <AnimatePresence mode="wait">
+            <AnimatePresence initial={false} mode="wait">
               <motion.div
                 key={active}
                 initial={{ opacity: 0, y: 14 }}

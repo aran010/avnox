@@ -13,20 +13,17 @@ import { motion, type Variants } from "framer-motion";
 const spring = { type: "spring", stiffness: 420, damping: 18 } as const;
 
 const stroke: Variants = {
-  hidden: { y: 26, opacity: 0 },
-  visible: { y: 0, opacity: 1, rotate: 0, transition: { ...spring, delay: 0.05 } },
+  visible: { y: 0, opacity: 1, rotate: 0 },
   hover: { rotate: -6, transition: spring },
 };
 
 const foot: Variants = {
-  hidden: { y: -60, x: 14, rotate: 25, opacity: 0 },
   visible: {
     y: 0,
     x: 0,
     rotate: 0,
     opacity: 1,
     fill: "url(#avnox-foot-grad)",
-    transition: { type: "spring", stiffness: 300, damping: 11, delay: 0.3 },
   },
   hover: {
     x: 18,
@@ -38,14 +35,12 @@ const foot: Variants = {
 };
 
 const word: Variants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.045, delayChildren: 0.35 } },
+  visible: {},
   hover: { transition: { staggerChildren: 0.035 } },
 };
 
 const letter: Variants = {
-  hidden: { y: "100%", opacity: 0 },
-  visible: { y: "0%", opacity: 1, transition: { type: "spring", stiffness: 500, damping: 26 } },
+  visible: { y: "0%", opacity: 1 },
   hover: {
     y: ["0%", "-22%", "0%"],
     transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
@@ -76,6 +71,7 @@ export function LogoMark({ size = 30, className = "" }: { size?: number; classNa
       />
       <motion.path
         d="M131 113 L148 80 H190 L245 193 H168 Z"
+        fill="url(#avnox-foot-grad)"
         variants={foot}
         style={{ originX: "30%", originY: "100%" }}
       />
@@ -126,7 +122,7 @@ export function Logo({ light = false, size = "default" }: { light?: boolean; siz
     <Link href="/" aria-label="Avnox home" className={`inline-flex ${color}`}>
       <motion.span
         className="inline-flex items-center gap-2.5"
-        initial="hidden"
+        initial={false}
         animate="visible"
         whileHover="hover"
         whileTap={{ scale: 0.96 }}
