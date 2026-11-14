@@ -47,6 +47,14 @@ export const metadataBase: Metadata = {
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   alternates: {
     canonical: "/",
   },
@@ -85,6 +93,7 @@ export const jsonLdSchema = {
       name: site.name,
       legalName: site.legalName,
       url: site.url,
+      logo: `${site.url}/icon.png`,
       email: site.email,
       description: site.description,
       contactPoint: {
