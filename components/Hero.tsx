@@ -55,10 +55,10 @@ function Diagram() {
   const currentPath = outcomePaths[active % outcomePaths.length];
 
   return (
-    <div className="relative grid grid-cols-[1fr_1fr_1.3fr_1.2fr] items-center gap-4 rounded-2xl border border-white/80 bg-[#f8fafc]/88 px-8 pb-12 pt-8 shadow-[0_30px_80px_-30px_rgba(15,23,42,0.4)] backdrop-blur-xl">
+    <div className="relative grid grid-cols-[1fr_1fr_1.3fr_1.2fr] items-center gap-4 rounded-2xl border border-[#e2e8f0] bg-white/95 px-8 pb-12 pt-8 shadow-[0_30px_80px_-30px_rgba(37,99,235,0.25)] backdrop-blur-xl">
       {/* Column headers */}
       {["Your Business", "Avnox Delivery", "Services", "Outcomes"].map((h) => (
-        <p key={h} className="text-center text-[12px] font-medium text-[#334155]">
+        <p key={h} className="text-center text-[12px] font-semibold text-[#0f172a]">
           {h}
         </p>
       ))}
@@ -119,7 +119,7 @@ function Diagram() {
               key={s}
               onClick={() => setActive(i)}
               className={`relative flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-[13px] transition-colors duration-300 ${
-                isActive ? "text-white" : "text-[#64748b] hover:text-[#0f172a]"
+                isActive ? "text-white" : "text-[#334155] hover:text-[#0f172a]"
               }`}
             >
               {isActive && (
@@ -199,7 +199,7 @@ function Diagram() {
 
       {/* Loop line */}
       <div className="pointer-events-none absolute bottom-4 left-[18%] right-[10%] flex items-center justify-center border-t border-dashed border-[#cbd5e1]">
-        <span className="-mt-px flex items-center gap-1.5 bg-white/90 px-3 text-[11px] text-[#64748b]">
+        <span className="-mt-px flex items-center gap-1.5 bg-white px-3 text-[11px] font-medium text-[#334155]">
           <motion.span
             animate={{ rotate: 360 }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -299,22 +299,27 @@ export function Hero() {
           className="relative mt-14 overflow-hidden rounded-2xl border border-[#e2e8f0]"
         >
           <div className="relative h-[420px] sm:h-[520px] lg:h-[560px]">
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse 60% 70% at 15% 20%, rgba(147,197,253,0.55) 0%, transparent 65%), radial-gradient(ellipse 55% 65% at 90% 85%, rgba(167,243,208,0.45) 0%, transparent 65%), linear-gradient(135deg, #eff6ff 0%, #f8fafc 50%, #e0f2fe 100%)",
+              }}
+            />
             <Image
               src="/avnox-logo.jpg"
               alt=""
               fill
               priority
               sizes="(max-width: 1200px) 100vw, 1200px"
-              className="object-cover object-[50%_48%] grayscale"
+              className="object-cover object-[50%_48%] opacity-[0.07] mix-blend-multiply grayscale"
             />
-            <div className="absolute inset-0 bg-[#bfdbfe] mix-blend-multiply opacity-35" />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/45 via-transparent to-[#f8fafc]/55" />
           </div>
           <div className="absolute inset-x-6 top-1/2 hidden -translate-y-1/2 lg:block xl:inset-x-16">
             <Diagram />
           </div>
           {/* Mobile: simple service ticker */}
-          <div className="absolute inset-x-4 bottom-4 rounded-xl border border-white/70 bg-white/85 p-4 backdrop-blur-md lg:hidden">
+          <div className="absolute inset-x-4 bottom-4 rounded-xl border border-[#e2e8f0] bg-white p-4 lg:hidden">
             <p className="text-[12px] font-medium text-[#64748b]">One partner for</p>
             <p className="mt-1 text-[15px] font-medium text-[#0f172a]">
               Consulting · AI · Migration · Staffing · Software · Hardware
