@@ -17,7 +17,7 @@ interface BookingPayload {
   referredBy?: string;
 }
 
-const RECIPIENT_EMAIL = "aranbhatteja@gmail.com";
+const RECIPIENT_EMAIL = "aran@avnoxsolutions.com";
 
 export async function POST(req: Request) {
   try {
