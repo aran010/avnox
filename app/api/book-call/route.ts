@@ -137,7 +137,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // 2. FormSubmit AJAX endpoint -> delivers directly to aranbhatteja@gmail.com
+    // 2. FormSubmit AJAX endpoint -> delivers directly to aran@avnoxsolutions.com
     const formPayload = isLeadOnly
       ? {
           _subject: subject,

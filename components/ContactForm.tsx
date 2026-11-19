@@ -721,8 +721,7 @@ export function ContactForm() {
                 You are scheduled
               </h3>
               <p className="mt-2 text-[15px] leading-relaxed text-[#6e6e73]">
-                A calendar invitation has been sent to{" "}
-                <span className="font-medium text-[#1d1d1f]">{email}</span>.
+                A calendar invitation has been sent. Our team will contact you shortly.
               </p>
 
               <div className="mt-6 space-y-2.5 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] p-5 text-[14px]">
